@@ -1,12 +1,10 @@
 class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
-        res=""
-        if len(strs)==0:
-            return ""
-        base=strs[0]
-        for i in range(0,len(base)):
-            for words in strs[1:len(strs)]:
-                if i==len(words) or words[i]!=base[i]:
-                    return res
-            res+=base[i]
-        return res
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        groups = {}
+        for word in strs:
+            key=''.join(sorted(word))
+
+            if key not in groups:
+                groups[key] = []
+            groups[key].append(word)
+        return list(groups.values())
